@@ -90,8 +90,9 @@ def crear_estudiante(request):
 
     return render(request, 'crearEstudiante.html', diccionario)
 
-
-@login_required(login_url='/entrando/login/')
+#login redirigido desde el settings, para separar todo y evitar fallos
+#@login_required(login_url='/entrando/login/')
+@login_required
 @permission_required('administrativo.change_estudiante',)
 def editar_estudiante(request, id):
     """
@@ -109,7 +110,10 @@ def editar_estudiante(request, id):
 
     return render(request, 'editarEstudiante.html', diccionario)
 
-
+#login redirigido desde el settings, para separar todo y evitar fallos
+#@login_required(login_url='/entrando/login/')
+@login_required
+@permission_required('administrativo.add_estudiante', )
 def eliminar_estudiante(request, id):
     """
     """
@@ -141,7 +145,7 @@ def crear_numero_telefonico(request):
 
     return render(request, 'crearNumeroTelefonico.html', diccionario)
 
-
+@en_grupo('supervisor')
 def editar_numero_telefonico(request, id):
     """
     """
@@ -158,6 +162,8 @@ def editar_numero_telefonico(request, id):
 
     return render(request, 'crearNumeroTelefonico.html', diccionario)
 
+
+@en_grupo('supervisor')
 def crear_numero_telefonico_estudiante(request, id):
     """
     """
